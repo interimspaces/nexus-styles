@@ -79,14 +79,205 @@
 }
 
 /* ---------------------------------------------------------------------
-   Calmer typography — trim the heaviest weights on shared headings.
-   Scoped to shared classes only (not a global * rule) to stay safe.
+   Card / section titles — ONE consistent style across the suite, matching
+   Genie's 'Dashboard' title (.crm-page-title): body font, 1.6rem,
+   semi-bold, standard text colour. Several titles had drifted to 2rem
+   (chart card titles, register row names); this brings them all in line.
+
+   Selectors keep equal specificity to the app's originals and win by
+   load order (this package is imported after the app's globals.css).
+   The `.bm-*` selectors are Genie-specific and harmless to other apps
+   (which have no such elements); each app folds in its own oversized
+   title selectors the same way as it adopts the package.
    --------------------------------------------------------------------- */
 .crm-page-title,
 .crm-section-title,
+.crm-record-title,
+.crm-record-title-link,
 .crm-header-card h1,
-.crm-header-card h2 {
+.crm-header-card h2,
+.crm-widget h3,
+.bm-dashboard-chart-card h3,
+.bm-invoice-table-head h3 {
+  font-family: var(--title-font);
+  font-size: var(--card-title-size);
   font-weight: var(--weight-bold);
+  color: var(--text);
+  line-height: 1.2;
+}
+
+/* Row / record names (e.g. Contract Register 'Studio 1.1') — same font and
+   colour as titles, but a notch smaller so they sit below card/section
+   titles in the hierarchy (were 2rem, oversized). */
+.bm-contract-row-plan strong {
+  font-family: var(--title-font);
+  font-size: var(--row-title-size);
+  font-weight: var(--weight-bold);
+  color: var(--text);
+  line-height: 1.2;
+}
+
+/* ---------------------------------------------------------------------
+   Side nav — the approved redesign. Tighter, calmer group labels; lighter
+   link weight; and a clean active state with a soft inset outline instead
+   of a flat fill. Styles the shared .crm-nav-* classes so every app's
+   side nav matches.
+   --------------------------------------------------------------------- */
+.crm-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px 14px;
+}
+.crm-nav-brand-mark {
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  background: var(--brand);
+  flex: none;
+}
+.crm-nav-brand-name {
+  font-weight: var(--weight-bold);
+  font-size: 15px;
+  color: #ffffff;
+}
+.crm-nav { gap: 16px; }
+.crm-nav-group-title {
+  margin: 2px 11px 6px;
+  font-size: 0.66rem;
+  letter-spacing: 0.09em;
+  color: #8b95a2;
+}
+.crm-nav-link {
+  gap: 10px;
+  padding: 9px 11px;
+  border-radius: 9px;
+}
+.crm-nav-link-label {
+  font-weight: var(--weight-medium);
+  font-size: 0.86rem;
+  color: var(--sidebar-text);
+}
+.crm-nav-link-icon,
+.crm-nav-link-icon svg {
+  width: 17px;
+  height: 17px;
+}
+.crm-nav-link.is-active {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(224, 229, 236, 0.30);
+}
+.crm-nav-link.is-active .crm-nav-link-label { color: #ffffff; }
+.crm-nav-link.is-active .crm-nav-link-icon { color: #eaf1fb; }
+
+/* ---------------------------------------------------------------------
+   Shell layout — NO top bar. A flush, full-height sidebar (square corners,
+   slightly narrower) runs from the very top; the account controls live on
+   the white page in a utility row at the top of the main content.
+   --------------------------------------------------------------------- */
+.crm-workspace {
+  padding: 0;
+  gap: 0;
+  grid-template-columns: clamp(190px, 15vw, 230px) minmax(0, 1fr);
+}
+.crm-sidebar {
+  border: none;
+  border-radius: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  align-self: start;
+  overflow-y: auto;
+  box-shadow: 2px 0 14px rgba(13, 22, 35, 0.16);
+  z-index: 5;
+}
+.crm-main {
+  padding: clamp(16px, 1.8vw, 26px);
+}
+
+/* White-page utility row (replaces the old dark top bar): mobile menu
+   button on the left, account controls (plain [ NEXUS ] link, identity,
+   sign out, avatar) pushed to the right. */
+.crm-page-utility {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.crm-utility-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.crm-nexus-link {
+  font-size: 12.5px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-decoration: none;
+}
+.crm-nexus-link:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+.crm-utility-divider {
+  width: 1px;
+  height: 26px;
+  background: var(--border);
+}
+.crm-acct {
+  text-align: right;
+  line-height: 1.25;
+}
+.crm-acct-name {
+  margin: 0;
+  font-size: 13px;
+  font-weight: var(--weight-bold);
+  color: var(--text);
+}
+.crm-acct-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.crm-signout-form {
+  display: inline;
+  margin: 0;
+}
+.crm-signout {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: var(--muted);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.crm-signout:hover {
+  color: var(--text);
+}
+.crm-acct-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface-contrast);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: var(--weight-bold);
+  overflow: hidden;
+  flex: none;
+}
+.crm-acct-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ---------------------------------------------------------------------
@@ -123,4 +314,88 @@
 .nx-ico-file {
   -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><polyline points='14 2 14 8 20 8'/></svg>");
   mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><polyline points='14 2 14 8 20 8'/></svg>");
+}
+.nx-ico-menu {
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='3' y1='6' x2='21' y2='6'/><line x1='3' y1='12' x2='21' y2='12'/><line x1='3' y1='18' x2='21' y2='18'/></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='3' y1='6' x2='21' y2='6'/><line x1='3' y1='12' x2='21' y2='12'/><line x1='3' y1='18' x2='21' y2='18'/></svg>");
+}
+
+/* =====================================================================
+   Responsive / mobile — the shared .crm-* shell adapts on small screens.
+   Below 860px the sidebar collapses behind a hamburger (triple-bar)
+   drawer, the workspace goes single-column so content gets full width,
+   the top bar condenses, and wide tables scroll horizontally instead of
+   overflowing the page. Every app on the .crm- shell inherits this.
+
+   Requires a hamburger control in the top bar that toggles the class
+   `crm-nav-open` on <body> (see each app's mobile-nav toggle), plus a
+   sibling `.crm-nav-overlay` element. On desktop both are hidden.
+   ===================================================================== */
+.crm-mobile-nav-toggle { display: none; }
+.crm-nav-overlay { display: none; }
+
+@media (max-width: 860px) {
+  /* hamburger button — only visible on mobile, sits on the white page
+     utility row, so it's styled for a light background */
+  .crm-mobile-nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    flex: none;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+  }
+  .crm-mobile-nav-toggle:active { transform: scale(0.97); }
+
+  /* workspace stacks: main content takes the full width */
+  .crm-workspace {
+    display: block;
+  }
+
+  /* sidebar becomes an off-canvas drawer that slides in from the left */
+  .crm-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 60;
+    width: 276px;
+    max-width: 84vw;
+    border-radius: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: translateX(-100%);
+    transition: transform 0.26s ease;
+  }
+  body.crm-nav-open .crm-sidebar { transform: translateX(0); }
+
+  /* dimmed overlay behind the open drawer; tap it to close */
+  .crm-nav-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 55;
+    background: rgba(13, 22, 35, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.26s ease;
+  }
+  body.crm-nav-open .crm-nav-overlay { opacity: 1; pointer-events: auto; }
+  body.crm-nav-open { overflow: hidden; }
+
+  /* wide tables scroll inside their wrapper rather than overflowing */
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* KPI tiles pack comfortably on narrow screens */
+  .crm-kpi-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
 }

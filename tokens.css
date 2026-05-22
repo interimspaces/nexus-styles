@@ -47,6 +47,13 @@
   --weight-medium: 500;
   --weight-bold: 600;
 
+  /* --- Card / section titles --- */
+  /* One consistent title size across the suite (matches Genie's 'Dashboard'
+     title). Several titles had drifted to 2rem; this brings them in line. */
+  --card-title-size: 1.6rem;
+  --row-title-size: 1.1rem;
+  --title-font: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+
   /* --- KPI tiles (amber, the suite's headline metric tiles) --- */
   --kpi-bg: linear-gradient(155deg, #ffc83c 0%, #f3a017 100%);
   --kpi-ink: #241405;
