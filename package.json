@@ -1,0 +1,17 @@
+{
+  "name": "@interimspaces/nexus-styles",
+  "version": "1.0.0",
+  "description": "Shared design tokens and component styles for the Nexus suite. Single source of truth for the look and feel of all Nexus apps.",
+  "license": "UNLICENSED",
+  "private": false,
+  "files": [
+    "tokens.css",
+    "components.css",
+    "dashboard-aliases.css"
+  ],
+  "exports": {
+    "./tokens.css": "./tokens.css",
+    "./components.css": "./components.css",
+    "./dashboard-aliases.css": "./dashboard-aliases.css"
+  }
+}

@@ -1,0 +1,149 @@
+/* =====================================================================
+   Nexus Suite — Canonical Design Tokens
+   Single source of truth for colours, shadows, spacing and component
+   chrome across all Nexus apps (FundBase, Portfolio Manager, MASA,
+   Genie, Frontier, Bell Events) and the Nexus Dashboard.
+
+   HOW TO USE
+   ----------
+   In each app's app/globals.css, make the VERY FIRST line:
+
+       @import '@interimspaces/nexus-styles/tokens.css';
+
+   then delete that app's local :root { ... } token block.
+   (@import must come before any other rule in the file.)
+
+   Do NOT edit token values inside an individual app. Change them here,
+   bump the package version, and let each app pull the update when it
+   is ready to test and deploy. This is what keeps the suite consistent.
+
+   Reconciled from the five module apps on 2026-05-22. Where apps had
+   drifted, the value used by the majority of apps was chosen as canonical
+   (notably --shadow, which Portfolio Manager had set to `none`).
+   ===================================================================== */
+
+:root,
+:root[data-theme='is-theme'] {
+  color-scheme: light;
+
+  /* --- Core surfaces & text --- */
+  --bg: #edf0f3;
+  --bg-strong: #e3e8ee;
+  --surface: #ffffff;
+  --surface-soft: #f1f4f7;
+  --surface-contrast: #1a2431;
+  --border: #c9d1db;
+  --border-strong: #aeb8c5;
+  --text: #1f2933;
+  --muted: #5a6776;
+
+  /* --- Brand --- */
+  --brand: #cc6a14;
+  --brand-strong: #8e4b0f;
+  --brand-soft: #ffe4cb;
+
+  /* --- Type weights (calmer "flat & light" look: bold is capped at semi-bold) --- */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 600;
+
+  /* --- KPI tiles (amber, the suite's headline metric tiles) --- */
+  --kpi-bg: linear-gradient(155deg, #ffc83c 0%, #f3a017 100%);
+  --kpi-ink: #241405;
+  --kpi-radius: 16px;
+  --kpi-shadow: 0 8px 20px rgba(142, 75, 15, 0.22);
+
+  /* --- Status --- */
+  /* Soft tokens are pale backgrounds; solid tokens are for text/badges/icons. */
+  --success: #2a9d8f;
+  --success-soft: #e6f5ec;
+  --warning: #b7791f;
+  --warning-soft: #fff2dc;
+  --info: #2f6f9f;
+  --info-soft: #e8f0fb;
+  --danger: #9f2a2a;
+  --danger-soft: #fbe9e9;
+
+  /* --- Elevation & background --- */
+  /* Panels/cards are FLAT in the agreed look: no drop shadow. Only KPI tiles
+     lift, via --kpi-shadow. --shadow is kept (now flat) for any rule still
+     referencing it so nothing breaks. */
+  --shadow: none;
+  --bg-gradient: radial-gradient(circle at 14% 0%, #f7f9fb 0%, #edf0f3 42%, #e6ebf1 100%);
+
+  /* --- Form fields --- */
+  --field-bg: #ffffff;
+  --field-text: #1f2933;
+  --focus-outline: #8ecbe3;
+
+  /* --- Buttons --- */
+  --button-height: 40px;
+  --button-padding-x: 14px;
+  --button-radius: 10px;
+  --button-font-size: 0.82rem;
+  --button-font-weight: 700;
+  --button-letter-spacing: 0.01em;
+  --button-primary-border: #a85a12;
+  --button-secondary-bg: #f4f8fd;
+  --button-secondary-text: #16324e;
+  --button-secondary-border: #c7d5e4;
+  --button-secondary-hover-bg: #e8f0fa;
+  --button-secondary-hover-border: #99aec7;
+  --button-danger-border: #842020;
+  --button-shadow-soft: none;
+  --button-shadow-primary: none;
+  --button-shadow-danger: none;
+
+  /* --- Top bar --- */
+  --topbar-bg: linear-gradient(125deg, #2c3138 0%, #252a31 50%, #1f242b 100%);
+  --topbar-text: #edf5ff;
+  --topbar-border: rgba(255, 255, 255, 0.14);
+  --topbar-overline: #c2c8d0;
+  --topbar-title: #ffffff;
+  --topbar-subtitle: #d2d7de;
+
+  /* --- User card --- */
+  --user-card-bg: rgba(17, 20, 24, 0.62);
+  --user-card-border: rgba(196, 204, 214, 0.33);
+  --user-email: #ffffff;
+  --user-role: #c6ced8;
+
+  /* --- Sidebar --- */
+  --sidebar-bg: linear-gradient(180deg, #2a2f36 0%, #22272e 100%);
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-shadow: none;
+  --sidebar-text: #deebfa;
+
+  /* --- Quick links --- */
+  --quick-link-text: #edf5ff;
+  --quick-link-border: rgba(255, 255, 255, 0.2);
+  --quick-link-bg: rgba(255, 255, 255, 0.06);
+  --quick-link-hover-border: rgba(211, 218, 227, 0.74);
+  --quick-link-hover-bg: rgba(255, 255, 255, 0.12);
+
+  /* --- Nav --- */
+  --nav-divider: rgba(196, 204, 214, 0.24);
+  --nav-link-text: #e7ecf3;
+  --nav-link-border: rgba(255, 255, 255, 0.12);
+  --nav-link-hover-border: rgba(210, 218, 228, 0.68);
+  --nav-link-hover-bg: rgba(255, 255, 255, 0.1);
+  --nav-link-active-border: #d6dbe3;
+  --nav-link-active-bg: linear-gradient(100deg, rgba(255, 255, 255, 0.22), rgba(203, 210, 219, 0.14));
+  --nav-link-active-shadow: inset 0 0 0 1px rgba(224, 229, 236, 0.44);
+  --nav-label: #f2f5fa;
+  --nav-icon: #cfd5de;
+
+  /* --- Login shell --- */
+  --login-shell-border: #c0ccd9;
+  --login-shell-shadow: none;
+
+  /* --- Header card --- */
+  --header-card-bg: linear-gradient(160deg, #ffffff 0%, #f1f4f8 100%);
+  --header-card-border: #ccd4de;
+
+  /* --- Tables --- */
+  --table-head-bg: #edf4fc;
+  --table-row-even-bg: #f6f9fe;
+  --table-row-hover-bg: #e9f2fc;
+  --table-row-selected-bg: #dfeefe;
+}

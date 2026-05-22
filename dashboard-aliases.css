@@ -1,0 +1,26 @@
+/* =====================================================================
+   Nexus Dashboard — legacy token aliases
+   ---------------------------------------------------------------------
+   The dashboard's CSS was written against an older set of variable names
+   (--accent, --ok, --warn, --text-dim) and an off-brand teal palette.
+   Rather than rewrite ~40 usages by hand, this file re-points those
+   legacy names at the canonical brand tokens, so the dashboard's default
+   look matches the module apps with minimal risk.
+
+   Import order in the dashboard's app/globals.css:
+       @import '@interimspaces/nexus-styles/tokens.css';
+       @import '@interimspaces/nexus-styles/dashboard-aliases.css';
+
+   This intentionally only affects the DEFAULT theme. The dashboard's
+   alternate themes (.theme-electric, the dark social-ops view) define
+   their own values and are left untouched.
+   ===================================================================== */
+
+:root,
+:root[data-theme='is-theme'],
+.theme-is-genie {
+  --accent: var(--brand);
+  --ok: var(--success);
+  --warn: var(--warning);
+  --text-dim: var(--muted);
+}

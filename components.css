@@ -1,0 +1,126 @@
+/* =====================================================================
+   Nexus Suite — Shared Component Styles
+   ---------------------------------------------------------------------
+   These rules restyle the component classes the apps ALREADY use
+   (the shared `.crm-*` design system + `.card` panels), so adopting the
+   agreed look needs no markup changes for the apps that share them
+   (Genie, Frontier, Portfolio, Bell). MASA shares the nav but renders
+   KPIs differently — it needs a small follow-up (see the rollout plan).
+
+   Import AFTER tokens.css:
+       @import '@interimspaces/nexus-styles/tokens.css';
+       @import '@interimspaces/nexus-styles/components.css';
+
+   Depends on tokens defined in tokens.css.
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   KPI tiles — the suite's headline metric tiles (amber)
+   Targets the existing markup:
+     .crm-kpi-grid > .crm-kpi-card > .crm-kpi-card-head
+        > .crm-kpi-icon (svg) + .crm-kpi-metric (.crm-kpi-value, .crm-kpi-label)
+   --------------------------------------------------------------------- */
+.crm-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+.crm-kpi-card {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  border-radius: var(--kpi-radius);
+  padding: 18px 20px;
+  color: var(--kpi-ink);
+  background: var(--kpi-bg);
+  box-shadow: var(--kpi-shadow);
+  text-decoration: none;
+}
+.crm-kpi-card-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.crm-kpi-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--kpi-ink);
+}
+.crm-kpi-icon svg {
+  width: 32px;
+  height: 32px;
+}
+.crm-kpi-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.crm-kpi-value {
+  font-weight: var(--weight-bold);
+  font-size: 30px;
+  line-height: 1;
+  color: var(--kpi-ink);
+}
+.crm-kpi-label {
+  font-weight: var(--weight-bold);
+  font-size: 14px;
+  color: var(--kpi-ink);
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------------
+   Panels / cards — flat: no shadow, no border, white surface
+   --------------------------------------------------------------------- */
+.card {
+  background: var(--surface);
+  border: none;
+  box-shadow: none;
+}
+
+/* ---------------------------------------------------------------------
+   Calmer typography — trim the heaviest weights on shared headings.
+   Scoped to shared classes only (not a global * rule) to stay safe.
+   --------------------------------------------------------------------- */
+.crm-page-title,
+.crm-section-title,
+.crm-header-card h1,
+.crm-header-card h2 {
+  font-weight: var(--weight-bold);
+}
+
+/* ---------------------------------------------------------------------
+   Optional CSS-only icon set (for code that doesn't already ship its
+   own SVG icons, e.g. MASA). Usage: <i class="nx-ico nx-ico-donors"></i>
+   Inherits colour from currentColor and size from font-size.
+   --------------------------------------------------------------------- */
+.nx-ico {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  background-color: currentColor;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  flex: none;
+}
+.nx-ico-donors {
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2'/><circle cx='9' cy='7' r='4'/><path d='M23 21v-2a4 4 0 0 0-3-3.87'/><path d='M16 3.13a4 4 0 0 1 0 7.75'/></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2'/><circle cx='9' cy='7' r='4'/><path d='M23 21v-2a4 4 0 0 0-3-3.87'/><path d='M16 3.13a4 4 0 0 1 0 7.75'/></svg>");
+}
+.nx-ico-calendar {
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2' ry='2'/><line x1='16' y1='2' x2='16' y2='6'/><line x1='8' y1='2' x2='8' y2='6'/><line x1='3' y1='10' x2='21' y2='10'/></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='4' width='18' height='18' rx='2' ry='2'/><line x1='16' y1='2' x2='16' y2='6'/><line x1='8' y1='2' x2='8' y2='6'/><line x1='3' y1='10' x2='21' y2='10'/></svg>");
+}
+.nx-ico-money {
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='23 6 13.5 15.5 8.5 10.5 1 18'/><polyline points='17 6 23 6 23 12'/></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='23 6 13.5 15.5 8.5 10.5 1 18'/><polyline points='17 6 23 6 23 12'/></svg>");
+}
+.nx-ico-file {
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><polyline points='14 2 14 8 20 8'/></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/><polyline points='14 2 14 8 20 8'/></svg>");
+}
