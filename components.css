@@ -72,7 +72,7 @@
 /* ---------------------------------------------------------------------
    Panels / cards — flat: no shadow, no border, white surface
    --------------------------------------------------------------------- */
-.card {
+.card:not(.crm-sidebar) {
   background: var(--surface);
   border: none;
   box-shadow: none;
