@@ -174,6 +174,142 @@
 .crm-nav-link.is-active .crm-nav-link-label { color: #ffffff; }
 .crm-nav-link.is-active .crm-nav-link-icon { color: #eaf1fb; }
 
+/* ---------------------------------------------------------------------
+   Cascade hardening
+   Some module apps emit their local globals.css after package CSS in the
+   compiled bundle, even when the layout imports this file after globals.
+   These scoped selectors preserve the shared look without requiring shell
+   changes or per-app markup edits.
+   --------------------------------------------------------------------- */
+:root .crm-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+:root .crm-kpi-card {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  border-radius: var(--kpi-radius);
+  padding: 18px 20px;
+  color: var(--kpi-ink);
+  background: var(--kpi-bg);
+  box-shadow: var(--kpi-shadow) !important;
+  text-decoration: none;
+}
+:root .crm-kpi-card-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+:root .crm-kpi-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--kpi-ink);
+}
+:root .crm-kpi-icon svg {
+  width: 32px;
+  height: 32px;
+}
+:root .crm-kpi-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+:root .crm-kpi-value,
+:root .crm-kpi-card strong {
+  display: block;
+  font-weight: var(--weight-bold);
+  font-size: 30px;
+  line-height: 1;
+  color: var(--kpi-ink);
+}
+:root .crm-kpi-label,
+:root .crm-kpi-card p {
+  font-weight: var(--weight-bold);
+  font-size: 14px;
+  color: var(--kpi-ink);
+  margin: 0;
+}
+:root .card:not(.crm-sidebar) {
+  background: var(--surface);
+  border: none;
+  box-shadow: none;
+}
+:root .crm-page-title,
+:root .crm-section-title,
+:root .crm-record-title,
+:root .crm-record-title-link,
+:root .crm-header-card h1,
+:root .crm-header-card h2,
+:root .crm-widget h3,
+:root .bm-dashboard-chart-card h3,
+:root .bm-invoice-table-head h3 {
+  font-family: var(--title-font);
+  font-size: var(--card-title-size);
+  font-weight: var(--weight-bold);
+  color: var(--text);
+  line-height: 1.2;
+}
+:root .bm-contract-row-plan strong {
+  font-family: var(--title-font);
+  font-size: var(--row-title-size);
+  font-weight: var(--weight-bold);
+  color: var(--text);
+  line-height: 1.2;
+}
+:root .crm-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px 14px;
+  text-decoration: none;
+}
+:root .crm-nav-brand:hover .crm-nav-brand-name {
+  text-decoration: underline;
+}
+:root .crm-nav-brand-mark {
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  background: var(--brand);
+  flex: none;
+}
+:root .crm-nav-brand-name {
+  font-weight: var(--weight-bold);
+  font-size: 15px;
+  color: #ffffff;
+}
+:root .crm-nav { gap: 16px; }
+:root .crm-nav-group-title {
+  margin: 2px 11px 6px;
+  font-size: 0.66rem;
+  letter-spacing: 0.09em;
+  color: #8b95a2;
+}
+:root .crm-nav-link {
+  gap: 10px;
+  padding: 9px 11px;
+  border-radius: 9px;
+}
+:root .crm-nav-link-label {
+  font-weight: var(--weight-medium);
+  font-size: 0.86rem;
+  color: var(--sidebar-text);
+}
+:root .crm-nav-link-icon,
+:root .crm-nav-link-icon svg {
+  width: 17px;
+  height: 17px;
+}
+:root .crm-nav-link.is-active {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(224, 229, 236, 0.30) !important;
+}
+:root .crm-nav-link.is-active .crm-nav-link-label { color: #ffffff; }
+:root .crm-nav-link.is-active .crm-nav-link-icon { color: #eaf1fb; }
+
 
 /* ---------------------------------------------------------------------
    Optional CSS-only icon set (for code that doesn't already ship its
