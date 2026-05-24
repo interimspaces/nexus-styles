@@ -7,11 +7,17 @@
   "files": [
     "tokens.css",
     "components.css",
-    "dashboard-aliases.css"
+    "shell.css",
+    "dashboard-aliases.css",
+    "calendar.css",
+    "icons"
   ],
   "exports": {
     "./tokens.css": "./tokens.css",
     "./components.css": "./components.css",
-    "./dashboard-aliases.css": "./dashboard-aliases.css"
+    "./dashboard-aliases.css": "./dashboard-aliases.css",
+    "./calendar.css": "./calendar.css",
+    "./icons/*": "./icons/*",
+    "./shell.css": "./shell.css"
   }
 }

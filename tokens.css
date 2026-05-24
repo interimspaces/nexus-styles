@@ -71,6 +71,24 @@
   --danger: #9f2a2a;
   --danger-soft: #fbe9e9;
 
+  /* --- Booking / calendar status palette (the calendar legend) --- */
+  /* Each status has a soft background, a border, and a text colour. */
+  --status-tentative-bg: #eef2f6;
+  --status-tentative-border: #c8d1dc;
+  --status-tentative-text: #556272;
+  --status-confirmed-bg: #e9f4ff;
+  --status-confirmed-border: #9cc8e7;
+  --status-confirmed-text: #1e537d;
+  --status-charged-bg: #fff0dd;
+  --status-charged-border: #e6bc86;
+  --status-charged-text: #764411;
+  --status-unpaid-bg: #fdecec;
+  --status-unpaid-border: #dca8a8;
+  --status-unpaid-text: #922f2f;
+  --status-paid-bg: #e8f5ed;
+  --status-paid-border: #9ecfaf;
+  --status-paid-text: #1e6840;
+
   /* --- Elevation & background --- */
   /* Panels/cards are FLAT in the agreed look: no drop shadow. Only KPI tiles
      lift, via --kpi-shadow. --shadow is kept (now flat) for any rule still
