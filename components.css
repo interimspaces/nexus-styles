@@ -235,7 +235,7 @@
   color: var(--kpi-ink);
 }
 :root .crm-kpi-label,
-:root .crm-kpi-card p {
+:root .crm-kpi-card p:not(.crm-kpi-value) {
   font-weight: var(--weight-bold);
   font-size: 14px;
   color: var(--kpi-ink);

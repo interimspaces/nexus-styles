@@ -572,6 +572,8 @@
   color: #66758a;
   font-size: 0.78rem;
 }
+
+@media (max-width: 980px) {
   .bm-scheduler-topbar {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -599,6 +601,9 @@
     grid-template-columns: 1fr;
     align-items: flex-start;
   }
+}
+
+@media (max-width: 760px) {
   .bm-scheduler-topbar {
     grid-template-columns: 1fr;
   }
@@ -642,3 +647,4 @@
   .bm-scheduler-agenda-item {
     grid-template-columns: 1fr;
   }
+}
