@@ -132,8 +132,9 @@
    --------------------------------------------------------------------- */
 .crm-nav-brand {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   padding: 4px 8px 14px;
   text-decoration: none;
 }
@@ -150,6 +151,7 @@
 .crm-nav-brand-name {
   font-weight: var(--weight-bold);
   font-size: 15px;
+  letter-spacing: 3px;
   color: #ffffff;
 }
 .crm-nav { gap: 16px; }
@@ -270,8 +272,9 @@
 }
 :root .crm-nav-brand {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   padding: 4px 8px 14px;
   text-decoration: none;
 }
@@ -288,6 +291,7 @@
 :root .crm-nav-brand-name {
   font-weight: var(--weight-bold);
   font-size: 15px;
+  letter-spacing: 3px;
   color: #ffffff;
 }
 :root .crm-nav { gap: 16px; }
