@@ -23,5 +23,6 @@
     "./calendar.css": "./calendar.css",
     "./icons/*": "./icons/*",
     "./shell.css": "./shell.css"
-  }
+  },
+  "packageManager": "npm@10.8.2"
 }
