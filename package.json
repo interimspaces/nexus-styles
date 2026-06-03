@@ -4,6 +4,10 @@
   "description": "Shared design tokens and component styles for the Nexus suite. Single source of truth for the look and feel of all Nexus apps.",
   "license": "UNLICENSED",
   "private": false,
+  "scripts": {
+    "test": "node scripts/check-package.mjs",
+    "pack:dry": "npm pack --dry-run"
+  },
   "files": [
     "tokens.css",
     "components.css",
