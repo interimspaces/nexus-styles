@@ -125,6 +125,234 @@
 }
 
 /* ---------------------------------------------------------------------
+   Tabs — Nexus-wide underline treatment.
+   Real tabs are text controls on a quiet rule: no rounded boxes, segmented
+   fills, or pill backgrounds. Badges/status pills keep their own styling.
+   --------------------------------------------------------------------- */
+:root {
+  --nexus-tab-rule: var(--border, #d4deeb);
+  --nexus-tab-text: var(--text, #202733);
+  --nexus-tab-active: #111820;
+  --nexus-tab-focus: #7fa4ce;
+  --nexus-tab-gap: 28px;
+  --nexus-tab-font-size: 1.08rem;
+}
+
+:root :is(
+  .nexus-tabs,
+  .nexus-tab-row,
+  .crm-tabs,
+  .crm-tab-list,
+  .crm-tab-row,
+  .crm-phase-filter-row,
+  .bm-scheduler-view-tabs,
+  .bm-member-modal-tabs,
+  .bm-add-contract-modal-tabs,
+  .bm-contract-modal-tabs,
+  .bm-plan-modal-tabs,
+  .bm-template-nav,
+  .pm-dir-tab-row,
+  .pm-tab-strip,
+  .frontier-authority-tabs,
+  .frontier-property-tabs,
+  .frontier-organisations-map-tabs,
+  .frontier-engagement-tabs,
+  .survey-stage-tabs,
+  .survey-section-tabs,
+  .survey-builder-tabs,
+  .survey-builder-inspector-tabs-next,
+  [role="tablist"]
+) {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: var(--nexus-tab-gap);
+  max-width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--nexus-tab-rule);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 2px;
+  scrollbar-width: thin;
+}
+
+:root :is(
+  .nexus-tabs,
+  .nexus-tab-row,
+  .crm-tabs,
+  .crm-tab-list,
+  .crm-tab-row,
+  .crm-phase-filter-row,
+  .bm-scheduler-view-tabs,
+  .bm-member-modal-tabs,
+  .bm-add-contract-modal-tabs,
+  .bm-contract-modal-tabs,
+  .bm-plan-modal-tabs,
+  .bm-template-nav,
+  .pm-dir-tab-row,
+  .pm-tab-strip,
+  .frontier-authority-tabs,
+  .frontier-property-tabs,
+  .frontier-organisations-map-tabs,
+  .frontier-engagement-tabs,
+  .survey-stage-tabs,
+  .survey-section-tabs,
+  .survey-builder-tabs,
+  .survey-builder-inspector-tabs-next,
+  [role="tablist"]
+) > :is(a, button, [role="tab"]) {
+  position: relative;
+  flex: 0 0 auto;
+  min-height: 0;
+  width: auto;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--nexus-tab-text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 -1px;
+  padding: 0 2px 12px;
+  font-family: var(--title-font);
+  font-size: var(--nexus-tab-font-size);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0;
+  line-height: 1.2;
+  text-align: left;
+  text-decoration: none;
+  text-transform: none;
+  transform: none !important;
+  white-space: nowrap;
+}
+
+:root :is(
+  .nexus-tabs,
+  .nexus-tab-row,
+  .crm-tabs,
+  .crm-tab-list,
+  .crm-tab-row,
+  .crm-phase-filter-row,
+  .bm-scheduler-view-tabs,
+  .bm-member-modal-tabs,
+  .bm-add-contract-modal-tabs,
+  .bm-contract-modal-tabs,
+  .bm-plan-modal-tabs,
+  .bm-template-nav,
+  .pm-dir-tab-row,
+  .pm-tab-strip,
+  .frontier-authority-tabs,
+  .frontier-property-tabs,
+  .frontier-organisations-map-tabs,
+  .frontier-engagement-tabs,
+  .survey-stage-tabs,
+  .survey-section-tabs,
+  .survey-builder-tabs,
+  .survey-builder-inspector-tabs-next,
+  [role="tablist"]
+) > :is(a, button, [role="tab"]):is(:hover, :focus-visible) {
+  background: transparent !important;
+  color: var(--nexus-tab-active);
+}
+
+:root :is(
+  .nexus-tabs,
+  .nexus-tab-row,
+  .crm-tabs,
+  .crm-tab-list,
+  .crm-tab-row,
+  .crm-phase-filter-row,
+  .bm-scheduler-view-tabs,
+  .bm-member-modal-tabs,
+  .bm-add-contract-modal-tabs,
+  .bm-contract-modal-tabs,
+  .bm-plan-modal-tabs,
+  .bm-template-nav,
+  .pm-dir-tab-row,
+  .pm-tab-strip,
+  .frontier-authority-tabs,
+  .frontier-property-tabs,
+  .frontier-organisations-map-tabs,
+  .frontier-engagement-tabs,
+  .survey-stage-tabs,
+  .survey-section-tabs,
+  .survey-builder-tabs,
+  .survey-builder-inspector-tabs-next,
+  [role="tablist"]
+) > :is(a, button, [role="tab"]):is(.is-active, .active, [aria-selected="true"], [aria-current="page"], [data-state="active"]) {
+  border-bottom-color: var(--nexus-tab-active);
+  background: transparent !important;
+  color: var(--nexus-tab-active);
+}
+
+:root :is(
+  .nexus-tabs,
+  .nexus-tab-row,
+  .crm-tabs,
+  .crm-tab-list,
+  .crm-tab-row,
+  .crm-phase-filter-row,
+  .bm-scheduler-view-tabs,
+  .bm-member-modal-tabs,
+  .bm-add-contract-modal-tabs,
+  .bm-contract-modal-tabs,
+  .bm-plan-modal-tabs,
+  .bm-template-nav,
+  .pm-dir-tab-row,
+  .pm-tab-strip,
+  .frontier-authority-tabs,
+  .frontier-property-tabs,
+  .frontier-organisations-map-tabs,
+  .frontier-engagement-tabs,
+  .survey-stage-tabs,
+  .survey-section-tabs,
+  .survey-builder-tabs,
+  .survey-builder-inspector-tabs-next,
+  [role="tablist"]
+) > :is(a, button, [role="tab"]):focus-visible {
+  outline: 2px solid var(--nexus-tab-focus);
+  outline-offset: 4px;
+}
+
+:root :is(
+  .nexus-tabs,
+  .nexus-tab-row,
+  .crm-tabs,
+  .crm-tab-list,
+  .crm-tab-row,
+  .crm-phase-filter-row,
+  .bm-scheduler-view-tabs,
+  .bm-member-modal-tabs,
+  .bm-add-contract-modal-tabs,
+  .bm-contract-modal-tabs,
+  .bm-plan-modal-tabs,
+  .bm-template-nav,
+  .pm-dir-tab-row,
+  .pm-tab-strip,
+  .frontier-authority-tabs,
+  .frontier-property-tabs,
+  .frontier-organisations-map-tabs,
+  .frontier-engagement-tabs,
+  .survey-stage-tabs,
+  .survey-section-tabs,
+  .survey-builder-tabs,
+  .survey-builder-inspector-tabs-next,
+  [role="tablist"]
+) > :is(a, button, [role="tab"]):is(:disabled, [aria-disabled="true"]) {
+  color: var(--muted, #6b7787);
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+/* ---------------------------------------------------------------------
    Side nav — the approved redesign. Tighter, calmer group labels; lighter
    link weight; and a clean active state with a soft inset outline instead
    of a flat fill. Styles the shared .crm-nav-* classes so every app's

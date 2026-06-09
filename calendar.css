@@ -199,27 +199,47 @@
 }
 .bm-scheduler-view-tabs {
   display: inline-flex;
-  border: 1px solid #ccd6e3;
-  border-radius: 8px;
-  overflow: hidden;
-  background: #ffffff;
+  align-items: center;
+  gap: 28px;
+  max-width: 100%;
+  border: 0;
+  border-bottom: 1px solid #d4deeb;
+  border-radius: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: transparent;
+  scrollbar-width: thin;
 }
 .bm-scheduler-view-tabs button {
+  position: relative;
+  flex: 0 0 auto;
   border-radius: 0;
   border: 0;
-  border-right: 1px solid #d6deea;
-  background: #f5f8fc;
-  color: #39506b;
-  padding: 9px 12px;
-  font-size: 0.92rem;
-  font-weight: 700;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: #202733;
+  margin-bottom: -1px;
+  padding: 0 2px 12px;
+  font-size: 1.08rem;
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 .bm-scheduler-view-tabs button:last-child {
   border-right: 0;
 }
 .bm-scheduler-view-tabs button.is-active {
-  background: #6c737d;
-  color: #ffffff;
+  border-bottom-color: #111820;
+  background: transparent;
+  color: #111820;
+}
+.bm-scheduler-view-tabs button:hover {
+  background: transparent;
+  color: #111820;
+}
+.bm-scheduler-view-tabs button:focus-visible {
+  outline: 2px solid #7fa4ce;
+  outline-offset: 4px;
 }
 .bm-scheduler-nav {
   display: inline-flex;
@@ -618,12 +638,11 @@
     width: 100%;
   }
   .bm-scheduler-view-tabs {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    width: 100%;
   }
   .bm-scheduler-view-tabs button {
-    flex: 1 1 33%;
-    border-right: 1px solid #d6deea;
-    border-bottom: 1px solid #d6deea;
+    flex: 0 0 auto;
   }
   .bm-scheduler-weekday-cell {
     padding: 8px 4px;
