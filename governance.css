@@ -1,0 +1,136 @@
+/* nexus-styles governance.css v1
+   ============================================================================
+   The one Governance look, shared by the Nexus Governance console and Quorum.
+   Source of truth: nexus/nexus-styles/governance.css. Each app carries a
+   vendored copy (see scripts/sync-governance-theme.sh); a test in each app
+   refuses a copy whose banner or hash drifts from this file.
+
+   Flat, black on white, #0047ff for anything live or current. Square corners,
+   no shadows, rules rather than boxes. Motion says what changed and nothing
+   more: dialogs fade and scale in, cards settle once on first paint, status
+   changes cross-fade. Everything respects prefers-reduced-motion.
+   ============================================================================ */
+
+:root {
+  --gov-bg: #ffffff;
+  --gov-ink: #101010;
+  --gov-muted: #555555;
+  --gov-faint: #777777;
+  --gov-rule: #101010;
+  --gov-border: #dedede;
+  --gov-border-2: #c5c5c5;
+  --gov-blue: #0047ff;
+  --gov-blue-soft: #f3f6ff;
+  --gov-green: #254b38;
+  --gov-green-soft: #edf6eb;
+  --gov-amber: #74511c;
+  --gov-amber-soft: #fff3db;
+  --gov-red: #8a2020;
+  --gov-red-soft: #fbeaea;
+  --gov-font: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --gov-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --gov-radius: 0;
+  --gov-motion-fast: 120ms;
+  --gov-motion-base: 180ms;
+  --gov-motion-slow: 300ms;
+  --gov-ease: cubic-bezier(.22, .61, .36, 1);
+}
+
+/* ---- Buttons ------------------------------------------------------------ */
+.gov-button,
+.gov-button-secondary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 10px 18px; border-radius: var(--gov-radius);
+  font: 700 14px/1.2 var(--gov-font); letter-spacing: .01em; cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--gov-motion-fast) var(--gov-ease), color var(--gov-motion-fast) var(--gov-ease), border-color var(--gov-motion-fast) var(--gov-ease);
+}
+.gov-button { background: var(--gov-blue); color: #fff; border: 2px solid var(--gov-blue); }
+.gov-button:hover { background: #0037c8; border-color: #0037c8; }
+.gov-button-secondary { background: #fff; color: var(--gov-ink); border: 2px solid var(--gov-ink); }
+.gov-button-secondary:hover { background: var(--gov-ink); color: #fff; }
+.gov-button[disabled], .gov-button-secondary[disabled] { opacity: .45; cursor: default; }
+.gov-button[aria-busy="true"] { cursor: wait; }
+.gov-button.is-danger { background: var(--gov-red); border-color: var(--gov-red); }
+.gov-button.is-danger:hover { background: #6d1717; border-color: #6d1717; }
+
+/* ---- Dialog ------------------------------------------------------------- */
+dialog.gov-modal {
+  border: 2px solid var(--gov-ink); border-radius: var(--gov-radius); padding: 0;
+  width: min(480px, calc(100vw - 32px)); background: var(--gov-bg); color: var(--gov-ink);
+  font-family: var(--gov-font);
+}
+dialog.gov-modal::backdrop { background: rgba(16, 16, 16, .55); }
+dialog.gov-modal[open] { animation: gov-dialog-in var(--gov-motion-base) var(--gov-ease); }
+dialog.gov-modal[open]::backdrop { animation: gov-fade-in var(--gov-motion-base) var(--gov-ease); }
+dialog.gov-modal.is-closing { animation: gov-dialog-out var(--gov-motion-fast) var(--gov-ease) forwards; }
+dialog.gov-modal.is-closing::backdrop { animation: gov-fade-out var(--gov-motion-fast) var(--gov-ease) forwards; }
+.gov-modal-body { display: grid; gap: 12px; padding: 24px; }
+.gov-modal-body h2 { margin: 0; font-size: 22px; line-height: 1.15; letter-spacing: -.02em; }
+.gov-modal-body p { margin: 0; color: var(--gov-muted); font-size: 15px; line-height: 1.5; }
+.gov-modal-eyebrow { margin: 0; color: var(--gov-blue); font: 700 11px/1 var(--gov-font); letter-spacing: .12em; text-transform: uppercase; }
+.gov-modal-mark {
+  display: inline-grid; place-items: center; width: 36px; height: 36px;
+  border: 2px solid var(--gov-ink); font: 700 18px/1 var(--gov-font);
+}
+.gov-modal-mark.is-success { background: var(--gov-green-soft); color: var(--gov-green); border-color: var(--gov-green); }
+.gov-modal-mark.is-error { background: var(--gov-red-soft); color: var(--gov-red); border-color: var(--gov-red); }
+.gov-modal-actions { display: flex; justify-content: flex-end; gap: 10px; padding-top: 6px; flex-wrap: wrap; }
+
+/* ---- Inline status (a quiet toast that lives where the action happened) -- */
+.gov-status {
+  display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px;
+  border: 2px solid var(--gov-ink); background: var(--gov-bg); color: var(--gov-ink);
+  font: 500 14px/1.45 var(--gov-font);
+  animation: gov-status-in var(--gov-motion-slow) var(--gov-ease);
+}
+.gov-status.is-success { border-color: var(--gov-green); background: var(--gov-green-soft); }
+.gov-status.is-error { border-color: var(--gov-red); background: var(--gov-red-soft); }
+.gov-status.is-warning { border-color: var(--gov-amber); background: var(--gov-amber-soft); }
+.gov-status strong { display: block; font-weight: 700; }
+.gov-status p { margin: 2px 0 0; color: var(--gov-muted); }
+.gov-status a { color: var(--gov-blue); font-weight: 700; }
+.gov-status-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.gov-modal-copy { color: var(--gov-muted); font-size: 15px; line-height: 1.5; }
+.gov-modal-copy p { margin: 0 0 8px; }
+.gov-modal-copy label { display: flex; gap: 8px; align-items: center; color: var(--gov-ink); font-weight: 600; min-height: 32px; }
+
+/* ---- Status pills change by cross-fade ---------------------------------- */
+.gov-pill {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
+  border: 2px solid var(--gov-ink); font: 700 12px/1 var(--gov-font); letter-spacing: .04em; text-transform: uppercase;
+  transition: background-color var(--gov-motion-slow) var(--gov-ease), color var(--gov-motion-slow) var(--gov-ease), border-color var(--gov-motion-slow) var(--gov-ease);
+}
+.gov-pill.is-live { border-color: var(--gov-blue); color: var(--gov-blue); background: var(--gov-blue-soft); }
+.gov-pill.is-done { border-color: var(--gov-green); color: var(--gov-green); background: var(--gov-green-soft); }
+.gov-pill.is-warning { border-color: var(--gov-amber); color: var(--gov-amber); background: var(--gov-amber-soft); }
+.gov-pill.is-error { border-color: var(--gov-red); color: var(--gov-red); background: var(--gov-red-soft); }
+
+/* ---- Progress bars fill --------------------------------------------------- */
+.gov-progress { width: 100%; height: 6px; background: var(--gov-border); overflow: hidden; }
+.gov-progress > span { display: block; height: 100%; background: var(--gov-blue); transition: width var(--gov-motion-slow) var(--gov-ease); }
+
+/* ---- Cards settle once on first paint ------------------------------------ */
+.gov-settle {
+  animation: gov-card-settle 420ms var(--gov-ease) calc(var(--gov-settle-order, 0) * 36ms) backwards;
+}
+
+/* ---- Skeletons for loading states --------------------------------------- */
+.gov-skeleton { display: block; background: linear-gradient(90deg, #f1f1f1 25%, #e6e6e6 37%, #f1f1f1 63%); background-size: 400% 100%; animation: gov-shimmer 1.4s linear infinite; }
+.gov-skeleton-line { height: 14px; margin: 8px 0; }
+.gov-skeleton-title { height: 40px; width: 40%; margin: 0 0 20px; }
+
+/* ---- Keyframes ------------------------------------------------------------ */
+@keyframes gov-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes gov-fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes gov-dialog-in { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes gov-dialog-out { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateY(6px) scale(.985); } }
+@keyframes gov-status-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+@keyframes gov-card-settle { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+@keyframes gov-shimmer { from { background-position: 100% 0; } to { background-position: 0 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  dialog.gov-modal[open], dialog.gov-modal[open]::backdrop, dialog.gov-modal.is-closing, dialog.gov-modal.is-closing::backdrop,
+  .gov-status, .gov-settle, .gov-skeleton { animation: none !important; }
+  .gov-button, .gov-button-secondary, .gov-pill, .gov-progress > span { transition: none !important; }
+}
